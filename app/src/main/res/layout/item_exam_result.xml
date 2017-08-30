@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/exam_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="8dp"
+    app:cardCornerRadius="5dp"
+    app:cardPreventCornerOverlap="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="5dp"
+        android:background="@color/transparent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/exam_course_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_weight="2"
+                android:background="@color/transparent"
+                android:drawableLeft="@drawable/ic_exam_tag_24dp"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:ellipsize="end"
+                android:text="课程名" />
+
+            <TextView
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:id="@+id/exam_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/red_rect"
+                android:textColor="@color/themeColor"
+                android:gravity="center_vertical"
+                android:text="期末考试"
+                android:lines="1"
+                android:ellipsize="end"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/exam_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/transparent"
+            android:drawableLeft="@drawable/ic_exam_place_24dp"
+            android:gravity="center_vertical"
+            android:text="考试地点"
+            android:lines="1"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:id="@+id/exam_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/transparent"
+            android:drawableLeft="@drawable/ic_exam_time_24dp"
+            android:gravity="center_vertical"
+            android:text="考试时间" />
+
+        <TextView
+            android:id="@+id/exam_method"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/transparent"
+            android:drawableLeft="@drawable/ic_exam_assignment_24dp"
+            android:gravity="center_vertical"
+            android:text="考试方式"
+            android:lines="1"
+            android:ellipsize="end"/>
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/themeColor" />
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

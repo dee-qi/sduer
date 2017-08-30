@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.sduhelper.Activities.SelfInfoActivity">
+    <include
+        layout="@layout/app_bar_funcs"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" />
+    <ImageView
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/ic_lancher"/>
+    <TextView
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="测试版 v0.1"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/themeColor"
+        android:background="@drawable/red_rect"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="Designed&amp;Made by 7D\nSupported by imaxct and Atrix Tang"
+        android:gravity="center"/>
+</LinearLayout>

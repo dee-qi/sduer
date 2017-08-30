@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.sduhelper.Activities.LibraryQueryActivity">
+    <include
+        layout="@layout/app_bar_funcs"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="提示：点击书名查看详情"
+        android:layout_margin="6dp"/>
+    <ListView
+        android:id="@+id/library_query_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+    <TextView
+        android:id="@+id/library_query_none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:gravity="center"
+        android:text="无结果"/>
+</LinearLayout>

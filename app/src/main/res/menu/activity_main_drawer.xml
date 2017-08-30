@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_selfInfo"
+            android:icon="@drawable/ic_selfinfo_black_24dp"
+            android:title="个人信息" />
+
+    </group>
+    <item android:title="快速入口">
+        <menu>
+            <item
+                android:id="@+id/nav_schoolbus"
+                android:icon="@drawable/ic_schoolbus_black_24dp"
+                android:title="校车查询" />
+            <item
+                android:id="@+id/nav_schoolcard"
+                android:icon="@drawable/ic_schoolcard_black_24dp"
+                android:title="校园卡充值" />
+        </menu>
+    </item>
+    <item android:title="其它">
+        <menu>
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_about_black_24dp"
+                android:title="关于" />
+            <item
+                android:id="@+id/nav_feedback"
+                android:icon="@drawable/ic_feedback_black_24dp"
+                android:title="问题反馈" />
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_share_black_24dp"
+                android:title="分享该应用" />
+        </menu>
+    </item>
+
+</menu>

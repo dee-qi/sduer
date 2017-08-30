@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/home_curriculum_item"
+    android:layout_marginTop="16dp"
+    android:layout_marginBottom="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:visibility="visible">
+
+    <TextView
+        android:lineSpacingExtra="2dp"
+        android:id="@+id/home_curriculum_order"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="第三节\n第五节"
+        android:lines="1"
+        android:ellipsize="marquee"/>
+    <TextView
+        android:lineSpacingExtra="2dp"
+        android:id="@+id/home_curriculum_name"
+        android:gravity="center"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="高等数学\n中国近代史纲要"
+        android:lines="1"
+        android:ellipsize="marquee"/>
+    <TextView
+        android:lineSpacingExtra="2dp"
+        android:id="@+id/home_curriculum_location"
+        android:gravity="center"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="圆厅123\n圆厅222"
+        android:lines="1"
+        android:ellipsize="marquee"/>
+</LinearLayout>

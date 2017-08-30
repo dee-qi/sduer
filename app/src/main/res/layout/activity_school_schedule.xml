@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.sduhelper.Activities.SchoolScheduleActivity">
+    <include
+        layout="@layout/app_bar_funcs"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" />
+    <ScrollView
+        android:id="@+id/sch_schedule_scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <CalendarView
+                android:id="@+id/sch_schedule_calender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </CalendarView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_sch_schedule"
+                android:gravity="center_vertical"
+                android:text="本学期大事件"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:drawablePadding="@dimen/activity_horizontal_margin"/>
+            <ListView
+                android:id="@+id/sch_schedule_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:divider="@null"
+                android:listSelector="@color/transparent"></ListView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

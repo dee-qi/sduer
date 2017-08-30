@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/news_item"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+
+    <TextView
+        android:id="@+id/news_title"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="这是一个测试标,之所以取这么长的标题是因为我想测试一下超出范围后变省略号的功能"
+        android:paddingBottom="5dp"
+        android:ellipsize="end"
+        android:lines="2"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right">
+        <TextView
+            android:id="@+id/news_time"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/red_rect"
+            android:textColor="@color/themeColor"
+            android:text="2017年7月18日"/>
+        <TextView
+            android:id="@+id/news_block"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/red_rect"
+            android:textColor="@color/themeColor"
+            android:text="重要通知"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+
+
+</LinearLayout>

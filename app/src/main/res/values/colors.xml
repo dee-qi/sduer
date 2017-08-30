@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--山大红-->
+    <color name="themeColor">#9c0c13</color>
+    <!--i山大绿-->
+    <!--<color name="themeColor">#018870</color>-->
+    <!--山大蓝-->
+    <!--<color name="themeColor">#00538b</color>-->
+    <!--基佬紫-->
+    <!--<color name="themeColor">#7e0c6e</color>-->
+
+    <!--常用色-->
+    <color name="white">#ffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="red">#ff000d</color>
+
+    <!--控件颜色-->
+    <color name="button_default">#d7d7d7</color>
+    <color name="text_default">#FF797979</color>
+    <color name="exam_icon">#9E9E9E</color>
+
+    <color name="navItemSelected">@color/themeColor</color>
+    <color name="navItemUnselected">#9E9E9E</color>
+    <color name="busItemSelected">#9E9E9E</color>
+
+    <color name="func_background">@color/white</color>
+    <color name="func_textColor">@color/text_default</color>
+</resources>

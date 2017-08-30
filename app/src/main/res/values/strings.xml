@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SDUHelper</string>
+    <string name="title_home">首页</string>
+    <string name="title_functions">功能</string>
+    <string name="title_news">资讯</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="empty_content">哎呀，内容走丢了......</string>
+    <string name="bus_tips">tips：点击中间的按钮可以直接交换始发点和目的地\n查询电话：88395114\n订车服务电话: 88395765 或 88392365</string>
+
+</resources>
