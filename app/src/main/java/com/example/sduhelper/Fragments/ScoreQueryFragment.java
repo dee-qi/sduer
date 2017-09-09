@@ -62,24 +62,28 @@ public class ScoreQueryFragment extends Fragment {
     Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
-            listView.setVisibility(View.VISIBLE);
-            loading.setVisibility(View.GONE);
-            switch (msg.what){
-                case LOAD_SUCCEED:
-                    SimpleAdapter listViewAdapter = new SimpleAdapter(view.getContext(),itemList,
-                            R.layout.item_score,
-                            new String[]{"courseName","xuefen","chengji","item21","item22","item31","item32"},
-                            new int[]{R.id.score_course_name,R.id.score_xuefen,R.id.score_chengji,
-                                    R.id.score_xkrenshu_or_wfzchengji,R.id.score_paiming_or_wfzjidian,
-                                    R.id.score_highest_or_xueqi,R.id.score_lowest_or_ksshijian});
-                    listView.setAdapter(listViewAdapter);
-                    if(itemList.size()==0){
-                        SmartToast.make(getContext(),"无当前项目成绩信息！");
-                    }
-                    break;
-                case LOAD_FAILED:
-                    SmartToast.make(getContext(),"获取成绩失败！");
-                    break;
+            if(msg.arg1 != -23) {
+                listView.setVisibility(View.VISIBLE);
+                loading.setVisibility(View.GONE);
+                switch (msg.what) {
+                    case LOAD_SUCCEED:
+                        SimpleAdapter listViewAdapter = new SimpleAdapter(view.getContext(), itemList,
+                                R.layout.item_score,
+                                new String[]{"courseName", "xuefen", "chengji", "item21", "item22", "item31", "item32"},
+                                new int[]{R.id.score_course_name, R.id.score_xuefen, R.id.score_chengji,
+                                        R.id.score_xkrenshu_or_wfzchengji, R.id.score_paiming_or_wfzjidian,
+                                        R.id.score_highest_or_xueqi, R.id.score_lowest_or_ksshijian});
+                        listView.setAdapter(listViewAdapter);
+                        if (itemList.size() == 0) {
+                            SmartToast.make(getContext(), "无当前项目成绩信息！");
+                        }
+                        break;
+                    case LOAD_FAILED:
+                        SmartToast.make(getContext(), "获取成绩失败！");
+                        break;
+                }
+            } else {
+                loading.setText("当前学期成绩为空");
             }
         }
     };
@@ -123,6 +127,7 @@ public class ScoreQueryFragment extends Fragment {
         //初始化布局和ItemList
         listView.setVisibility(View.GONE);
         loading.setVisibility(View.VISIBLE);
+        loading.setText("加载中");
         itemList = new LinkedList<>();
 
         String url;
@@ -158,6 +163,11 @@ public class ScoreQueryFragment extends Fragment {
                         } else if(selectedItem.equals(FAILED)){
                             loadHistoryOrFailed(array);
                         }
+                    } else if (obj.getString("msg").equals("结果为空")){
+                        msg = new Message();
+                        msg.what = LOAD_SUCCEED;
+                        msg.arg1 = -23;
+                        handler.sendMessage(msg);
                     }
                 }catch (JSONException e){
                     Log.d(TAG, "onResponse: JsonException"+e.toString());
