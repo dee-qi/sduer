@@ -2,6 +2,7 @@ package com.example.sduhelper.utils;
 
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -58,6 +59,20 @@ public class Information {
         //calendar返回的是以周日为每周的第一天，这里减一是为了换算成周一为每周的第一天的情况
         int weekday = calendar.get(Calendar.DAY_OF_WEEK)-1;
         return weekday;
+    }
+
+    public static String stamp2Date(long stamp){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String[] s = sdf.format(stamp).split("-");
+        String date = "";
+        if(s.length ==3) {
+            date = s[0] + "年" + s[1] + "月" + s[2] + "日";
+        } else {
+            date = "格式出错";
+        }
+//        Date mDate = new Date(stamp);
+//        String date = mDate.getYear()+"年"+mDate.getMonth()+"月"+mDate.getDay()+"日";
+        return date;
     }
 
 }

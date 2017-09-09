@@ -101,6 +101,15 @@ public class SchoolCardActivity extends BaseActivity {
         recharge = (TextView)findViewById(R.id.schoolcard_recharge);
         refreshLayout = (SwipeRefreshLayout)findViewById(R.id.schoolcard_refresh);
 
+
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadData(SharedPreferenceUtil.get(SchoolCardActivity.this,"userInfo","cardNum"),
+                        SharedPreferenceUtil.get(SchoolCardActivity.this,"userInfo","pwd"));
+            }
+        });
+
         recharge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -23,6 +23,7 @@ import com.example.sduhelper.Items.BookBorrowedItem;
 import com.example.sduhelper.R;
 import com.example.sduhelper.utils.ApiUtil;
 import com.example.sduhelper.utils.BaseActivity;
+import com.example.sduhelper.utils.Information;
 import com.example.sduhelper.utils.NetWorkUtil;
 import com.example.sduhelper.utils.SharedPreferenceUtil;
 import com.example.sduhelper.utils.SmartToast;
@@ -116,7 +117,7 @@ public class LibraryActivity extends BaseActivity {
         if(SharedPreferenceUtil.get(LibraryActivity.this,"userInfo","isLibraryBound")
                 .equals("false")||
                 SharedPreferenceUtil.get(LibraryActivity.this,"userInfo","cardNum")
-                        .equals("false")){
+                        .equals("")){
             final EditText cardId = new EditText(this);
             cardId.setHint("校园卡账号（不是学号）");
             cardId.setInputType(EditorInfo.TYPE_CLASS_NUMBER);
@@ -170,6 +171,7 @@ public class LibraryActivity extends BaseActivity {
                 msg = new Message();
                 msg.what = LOAD_FAILED;
                 handler.sendMessage(msg);
+                Log.d(TAG, "onFailure: onfailure");
             }
 
             @Override
@@ -186,8 +188,8 @@ public class LibraryActivity extends BaseActivity {
                             JSONObject book = array.getJSONObject(i);
                             BookBorrowedItem item = new BookBorrowedItem(
                                     book.getString("name"),
-                                    book.getString("borDate"),
-                                    book.getString("retDate"),
+                                    Information.stamp2Date(Long.parseLong(book.getString("borDate"))),
+                                    Information.stamp2Date(Long.parseLong(book.getString("retDate"))),
                                     book.getString("id"),
                                     book.getString("checkCode"));
                             bookList.add(item);
@@ -233,13 +235,14 @@ public class LibraryActivity extends BaseActivity {
                 msg = new Message();
                 msg.what = BIND_FAILED;
                 handler.sendMessage(msg);
+                Log.d("@bindLib", "onFailure: ");
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 msg = new Message();
                 String s = response.body().string();
-                Log.d(TAG, "onResponse: "+s);
+                Log.d("@bindLib", "onResponse: "+s);
                 try {
                     JSONObject obj = new JSONObject(s);
                     if (obj.getInt("code") == 0) {

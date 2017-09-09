@@ -29,6 +29,7 @@ import static com.tencent.mm.opensdk.modelbase.BaseResp.ErrCode.ERR_USER_CANCEL;
  */
 
 public class WXEntryActivity extends Activity implements IWXAPIEventHandler{
+    private static final String TAG = "WXEntryActivity";
 
     private IWXAPI api = WXAPIFactory.createWXAPI(this, ApiUtil.getApi(WXEntryActivity.this,"APP_ID"));
 
@@ -72,8 +73,10 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler{
             default:
                 LoginActivity.login_state = LoginActivity.WX_BOUND_FAILED;
                 SmartToast.make(this,"发送返回！");
+                Log.d(TAG, "onResp: "+baseResp.errStr);
                 finish();
                 break;
         }
+        Log.d(TAG, "onResp: "+baseResp.errStr);
     }
 }

@@ -3,6 +3,7 @@ package com.example.sduhelper.Adapters;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,10 +66,10 @@ public class BookBorrowedAdapter extends RecyclerView.Adapter<BookBorrowedAdapte
         public void handleMessage(Message msg) {
             if(msg.what == RENEW_SUCCEED){
                 String bookName = (String)msg.obj;
-                SmartToast.make(viewInViewHolder.getContext(), bookName+"续借成功啦！");
+                SmartToast.make(viewInViewHolder.getContext(), bookName+"续借成功啦！重新进入图书馆功能可以看到新的应还日期！");
             } else if(msg.what == RENEW_FAILED){
                 String feedBack = (String)msg.obj;
-                if(feedBack.equals("")){
+                if(feedBack.equals("")||feedBack == null){
                     SmartToast.make(viewInViewHolder.getContext(),"续借失败！请检查网络！");
                 } else {
                     SmartToast.make(viewInViewHolder.getContext(),feedBack);
@@ -108,6 +109,7 @@ public class BookBorrowedAdapter extends RecyclerView.Adapter<BookBorrowedAdapte
                     public void onResponse(Call call, Response response) throws IOException {
                         msg = new Message();
                         String s = response.body().string();
+                        Log.d("@bba", "onResponse: "+s);
                         try {
                             JSONObject o = new JSONObject(s);
                             if(o.getInt("code") == 0){
@@ -115,7 +117,7 @@ public class BookBorrowedAdapter extends RecyclerView.Adapter<BookBorrowedAdapte
                                 msg.obj = bookBorrowedItem.getBookName();
                             } else {
                                 msg.what = RENEW_FAILED;
-                                msg.obj = o.getJSONObject("obj").getString("msg");
+                                msg.obj = o.getString("msg");
                             }
                         } catch (JSONException e){
                             e.printStackTrace();

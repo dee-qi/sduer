@@ -95,10 +95,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 schoolcardBalanceGroup.setVisibility(View.VISIBLE);
                 schoolcardTips.setVisibility(View.GONE);
                 schoolcardBalance.setText((String)msg.obj);
-                Log.d(TAG, "handleMessage: handler SUCCEED");
+                Log.d("@schoolcard@", "handleMessage: handler SUCCEED");
                 balance = (String)msg.obj;
             } else if(msg.what == SCH_FAILED){
-                Log.d(TAG, "handleMessage: handler FAILED");
+                Log.d("@schoolcard@", "handleMessage: handler FAILED");
                 schoolcardTips.setText("加载失败");
             }
         }
@@ -226,21 +226,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 public void onFailure(Call call, IOException e) {
                     msg.what = SCH_FAILED;
                     handler.sendMessage(msg);
-                    Log.d(TAG, "onFailure: "+e.getMessage());
+                    Log.d("@schoolcard@", "onFailure: "+e.getMessage());
                 }
 
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     String s = response.body().string();
+                    if(s.contains("验证码")){return;}
                     try{
-                        Log.d(TAG, "onResponse: schoolcard "+s);
+                        Log.d("@schoolcard@", "onResponse: schoolcard "+s);
                         JSONArray array = new JSONArray(s);
                         JSONObject obj = array.getJSONObject(2);
                         msg.obj = obj.get("value");
                         msg.what = SCH_SUCCEED;
                     } catch (JSONException e){
                         msg.what = SCH_FAILED;
-                        Log.d(TAG, "onResponse: "+e.getMessage());
+                        Log.d("@schoolcard@", "onResponse: "+e.getMessage());
                         e.printStackTrace();
                     } finally {
                         handler.sendMessage(msg);
@@ -288,7 +289,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                                 JSONObject book = array.getJSONObject(i);
                                 Map<String, String> map = new HashMap<String, String>();
                                 map.put("name", book.getString("name"));
-                                map.put("returnDate", book.getString("retDate"));
+                                map.put("returnDate",
+                                        "应还日期:"+
+                                        Information.stamp2Date(Long.parseLong(book.getString("retDate"))));
                                 libList.add(map);
                             }
                         } else if (o.getString("msg").contains("未借阅")) {
