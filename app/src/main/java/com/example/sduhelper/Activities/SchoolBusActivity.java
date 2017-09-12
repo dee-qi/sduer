@@ -20,6 +20,7 @@ import com.example.sduhelper.R;
 import com.example.sduhelper.utils.ApiUtil;
 import com.example.sduhelper.utils.BaseActivity;
 import com.example.sduhelper.utils.NetWorkUtil;
+import com.example.sduhelper.utils.SmartToast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -102,7 +103,8 @@ public class SchoolBusActivity extends BaseActivity implements View.OnClickListe
             //查询数据
             case R.id.bus_query :
                 if(busStart.getSelectedItem().toString().equals(busEnd.getSelectedItem().toString())){
-                    Toast.makeText(this, "请选择不同的始发地和目的地！", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(this, "请选择不同的始发地和目的地！", Toast.LENGTH_SHORT).show();
+                    SmartToast.make(this,"请选择不同的始发地和目的地");
                 } else {
                     queryDialog = new ProgressDialog(SchoolBusActivity.this);
                     queryDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);

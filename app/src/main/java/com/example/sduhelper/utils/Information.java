@@ -14,7 +14,7 @@ import java.util.Date;
  */
 
 public class Information {
-    private static final String TAG = "Information";
+    private static final String TAG = "@week";
 
     public static String api_token = null;
 
@@ -32,11 +32,11 @@ public class Information {
         beginningDay = 10;
 
         Calendar calendar = Calendar.getInstance();
-        int currentWeekOfTerm = calendar.get(Calendar.WEEK_OF_YEAR);
+        int currentWeekOfTerm = calendar.get(Calendar.WEEK_OF_YEAR)+4;
         calendar.set(beginningYear,beginningMonth,beginningDay);
         int beginningWeekOfTerm =calendar.get(Calendar.WEEK_OF_YEAR);
 
-        int weekOfTerm = currentWeekOfTerm - beginningWeekOfTerm;
+        int weekOfTerm = currentWeekOfTerm - beginningWeekOfTerm+1;
 
         // 如果是在假期就返回-1
         if(weekOfTerm >18||weekOfTerm<1){

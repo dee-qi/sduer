@@ -1,6 +1,7 @@
 package com.example.sduhelper.Fragments;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -65,6 +67,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     //校园卡
     private LinearLayout schoolcard,schoolcardBalanceGroup;
     private TextView schoolcardBalance,schoolCardShowAll,schoolcardTips;
+    private ImageView schoolcardRefresh;
     private static String balance = "";
 
     //图书借阅
@@ -122,6 +125,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         schoolcardTips = (TextView)v.findViewById(R.id.home_schoolcard_tips);
         schoolcardBalanceGroup = (LinearLayout)v.findViewById(R.id.home_schoolcard_balance_group);
         schoolCardShowAll = (TextView)v.findViewById(R.id.home_schoolcard_show_all);
+        schoolcardRefresh = (ImageView)v.findViewById(R.id.home_schoolcard_refresh);
 
         library = (LinearLayout)v.findViewById(R.id.home_library);
         libraryList = (ListView)v.findViewById(R.id.home_library_list);
@@ -132,6 +136,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         curriculumShowAll.setOnClickListener(this);
         libraryShowAll.setOnClickListener(this);
         schoolCardShowAll.setOnClickListener(this);
+        schoolcardRefresh.setOnClickListener(this);
 
         loadCurriculumToday();
         loadSchoolCard();
@@ -232,7 +237,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     String s = response.body().string();
-                    if(s.contains("验证码")){return;}
+                    if(s.contains("验证码")){
+                        Log.d(TAG, "onResponse: return");
+                        return;
+                    }
                     try{
                         Log.d("@schoolcard@", "onResponse: schoolcard "+s);
                         JSONArray array = new JSONArray(s);
@@ -337,6 +345,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 intent = new Intent(v.getContext(), SchoolCardActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.home_schoolcard_refresh:
+                balance = "";
+                loadSchoolCard();
+                SmartToast.make(getContext(),"正在刷新\n请勿频繁刷新，两小时内超过5次访问会被拒绝");
             default:
                 break;
         }
