@@ -26,7 +26,7 @@ import java.util.List;
  */
 
 public class CurriculumAdapter extends BaseAdapter {
-    private static final String TAG = "CurriculumAdapter";
+    private static final String TAG = "@curri";
     private Context context;
     private List<ItemCurriculum> classList;
     TextView weekCount;
@@ -73,9 +73,11 @@ public class CurriculumAdapter extends BaseAdapter {
 
             //获取当前周数
             int weekOfTerm = Information.getCurrentWeekCount();
+            Log.d(TAG, "week of term is "+weekOfTerm);
             if(weekOfTerm != -1) {
                 weekCount.setText("当前是第 " + weekOfTerm + " 周");
                 //不在当前周的课程为灰色，其余为5种颜色随机
+                Log.d(TAG, "item "+getItem(position).getName()+" is "+getItem(position).getWeekSequence());
                 if (getItem(position).getWeekSequence().charAt(weekOfTerm - 1) == '0') {
                     textView.setBackground(context.getResources().getDrawable(R.drawable.curriculum_bg_0));
                 } else {

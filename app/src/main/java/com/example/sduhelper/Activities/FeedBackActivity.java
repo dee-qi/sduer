@@ -81,6 +81,7 @@ public class FeedBackActivity extends BaseActivity implements View.OnClickListen
 
         Map<String, String> map = new HashMap<>();
         StringBuilder sb = new StringBuilder();
+        sb.append("<"+getResources().getString(R.string.version_code)+">");
         sb.append("topic:"+feedBackTopic.getText().toString()+"###");
         sb.append("content:"+feedBackContent.getText().toString()+"###");
         sb.append("qq:"+feedBackQQ.getText().toString()+"###");

@@ -27,12 +27,12 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:background="@drawable/red_rect"
-        android:text="测试版 v0.4"
+        android:text="@string/version_code"
         android:textColor="@color/themeColor" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="最后更新于2017年9月12日\n请经常与作者联系获取最新版本"
+        android:text="最后更新于2017年9月18日\n请经常与作者联系获取最新版本"
         android:layout_below="@id/about_text1"
         android:gravity="center"
         android:layout_centerHorizontal="true"
