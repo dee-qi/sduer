@@ -6,6 +6,7 @@
     android:textSize="16dp"
     android:lines="2"
     android:drawableLeft="@drawable/ic_schoolbus_black_24dp"
+    android:textColor="@color/text_default"
     android:paddingTop="10dp"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
