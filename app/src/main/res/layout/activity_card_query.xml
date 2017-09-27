@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.sduhelper.Activities.CardQueryActivity">
+    <include layout="@layout/app_bar_funcs"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:gravity="center_vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_search_black_24dp"
+            android:gravity="center_vertical"
+            android:drawablePadding="@dimen/activity_horizontal_margin"
+            android:text="选择查询内容"
+            />
+        <Spinner
+            android:id="@+id/schoolcard_query_select"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"></Spinner>
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#D3D3D3"/>
+    <ListView
+        android:id="@+id/schoolcard_query_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foreground="@color/transparent"/>
+    <TextView
+        android:id="@+id/schoolcard_query_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="加载中..."
+        android:textSize="18dp"
+        android:textColor="@color/themeColor"
+        android:gravity="center"/>
+
+</LinearLayout>

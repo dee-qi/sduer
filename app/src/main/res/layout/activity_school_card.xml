@@ -60,15 +60,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/button_default"/>
-            <TextView
-                android:id="@+id/schoolcard_recharge"
-                android:paddingTop="8dp"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="余额充值"
-                android:gravity="center"
-                android:paddingBottom="8dp"
-                android:textColor="@color/themeColor"/>
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/schoolcard_recharge"
+                    android:paddingTop="8dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="余额充值"
+                    android:gravity="center"
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/themeColor"/>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/button_default"/>
+                <TextView
+                    android:id="@+id/schoolcard_history"
+                    android:paddingTop="8dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="流水查询"
+                    android:gravity="center"
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/themeColor"/>
+            </LinearLayout>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="10dp"

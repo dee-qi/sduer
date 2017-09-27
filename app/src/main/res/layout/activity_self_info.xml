@@ -43,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:clickable="false"></ListView>
+                android:foreground="@color/transparent"></ListView>
 
             <Button
                 android:id="@+id/selfinfo_logout"

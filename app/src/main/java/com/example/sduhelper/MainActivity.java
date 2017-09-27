@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sduhelper.Activities.CardQueryActivity;
 import com.example.sduhelper.Activities.SchoolCardActivity;
 import com.example.sduhelper.Fragments.FunctionsFragment;
 import com.example.sduhelper.Fragments.HomeFragment;

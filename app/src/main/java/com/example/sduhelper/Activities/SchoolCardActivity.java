@@ -48,6 +48,7 @@ public class SchoolCardActivity extends BaseActivity {
     private Map<String,String> mMap;
 
     private TextView recharge;
+    private TextView history;
 
     private final int LOAD_SUCCEED = 0x111;
     private final int LOAD_FAILED = 0x112;
@@ -99,6 +100,7 @@ public class SchoolCardActivity extends BaseActivity {
         freeze = (TextView)findViewById(R.id.schoolcard_freeze);
         status = (TextView)findViewById(R.id.schoolcard_status);
         recharge = (TextView)findViewById(R.id.schoolcard_recharge);
+        history = (TextView)findViewById(R.id.schoolcard_history);
         refreshLayout = (SwipeRefreshLayout)findViewById(R.id.schoolcard_refresh);
 
 
@@ -117,6 +119,18 @@ public class SchoolCardActivity extends BaseActivity {
                     SmartToast.make(SchoolCardActivity.this,"请等待信息获取完毕再进行操作！");
                 } else {
                     Intent intent = new Intent(SchoolCardActivity.this, CardRechargeActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(refreshLayout.isRefreshing()){
+                    SmartToast.make(SchoolCardActivity.this,"请等待信息获取完毕再进行操作！");
+                } else {
+                    Intent intent = new Intent(SchoolCardActivity.this, CardQueryActivity.class);
                     startActivity(intent);
                 }
             }
