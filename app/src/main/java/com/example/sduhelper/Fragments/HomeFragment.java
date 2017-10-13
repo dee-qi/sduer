@@ -84,12 +84,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
-            if(msg.what == LIB_SUCCEED){
+            if(msg.what == LIB_SUCCEED) {
                 libraryNone.setVisibility(View.GONE);
                 libraryList.setVisibility(View.VISIBLE);
-                SimpleAdapter adapter = new SimpleAdapter(getContext(),libList,R.layout.item_home_lib,
-                        new String[]{"name","returnDate"},new int[]{R.id.home_lib_name,R.id.home_lib_return});
+                if (getContext() != null){
+                    SimpleAdapter adapter = new SimpleAdapter(getContext(), libList, R.layout.item_home_lib,
+                            new String[]{"name", "returnDate"}, new int[]{R.id.home_lib_name, R.id.home_lib_return});
                 libraryList.setAdapter(adapter);
+                }
             } else if(msg.what == LIB_NOTHING){
                 libraryNone.setText("无借阅");
             } else if(msg.what == LIB_FAILED){
@@ -219,7 +221,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                         .equals("")){
             schoolcardTips.setText("请先进入校园卡功能绑定卡号");
         } else if(balance.equals("")){
-            SmartToast.make(getContext(),"请求校园卡数据");
+//            SmartToast.make(getContext(),"请求校园卡数据");
             String url = String.format(ApiUtil.getApi(getContext(), "api_school_card_getInfo"),
                     SharedPreferenceUtil.get(getContext(),"userInfo","cardNum"),
                     SharedPreferenceUtil.get(getContext(),"userInfo","pwd"));

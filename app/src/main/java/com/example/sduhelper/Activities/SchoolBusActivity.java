@@ -19,7 +19,6 @@ import android.widget.Toast;
 import com.example.sduhelper.R;
 import com.example.sduhelper.utils.ApiUtil;
 import com.example.sduhelper.utils.BaseActivity;
-import com.example.sduhelper.utils.NetWorkUtil;
 import com.example.sduhelper.utils.SmartToast;
 
 import org.json.JSONArray;
@@ -47,7 +46,7 @@ public class SchoolBusActivity extends BaseActivity implements View.OnClickListe
     private RadioButton weekday;
     private RadioButton weekend;
     String[] queryResults;
-    ArrayAdapter reslultAdapter;
+    ArrayAdapter resultAdapter;
     ListView resultList;
 
     @Override
@@ -173,12 +172,12 @@ public class SchoolBusActivity extends BaseActivity implements View.OnClickListe
                     e.printStackTrace();
                     Log.d(TAG, "onResponse: error");
                 }
-                reslultAdapter = new ArrayAdapter(getApplicationContext(), R.layout.item_bus_result, queryResults);
+                resultAdapter = new ArrayAdapter(getApplicationContext(), R.layout.item_bus_result, queryResults);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         if (isBusDataAvailable) {
-                            resultList.setAdapter(reslultAdapter);
+                            resultList.setAdapter(resultAdapter);
                             setListViewHeightBasedOnItems(resultList);//根据ListView的item个数调整ListView的高度
                         } else {
                             Toast.makeText(SchoolBusActivity.this, "所选校区之间没有班车！", Toast.LENGTH_SHORT).show();
@@ -238,12 +237,12 @@ public class SchoolBusActivity extends BaseActivity implements View.OnClickListe
 //                            e.printStackTrace();
 //                            Log.d(TAG, "onResponse: error");
 //                        }
-//                        reslultAdapter = new ArrayAdapter(getApplicationContext(), R.layout.item_bus_result, queryResults);
+//                        resultAdapter = new ArrayAdapter(getApplicationContext(), R.layout.item_bus_result, queryResults);
 //                        runOnUiThread(new Runnable() {
 //                            @Override
 //                            public void run() {
 //                                if (isBusDataAvailable) {
-//                                    resultList.setAdapter(reslultAdapter);
+//                                    resultList.setAdapter(resultAdapter);
 //                                    setListViewHeightBasedOnItems(resultList);//根据ListView的item个数调整ListView的高度
 //                                } else {
 //                                    Toast.makeText(SchoolBusActivity.this, "所选校区之间没有班车！", Toast.LENGTH_SHORT).show();

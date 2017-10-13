@@ -32,7 +32,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="最后更新于2017年9月27日\n请经常与作者联系获取最新版本"
+        android:text="最后更新于2017年10月14日\n请经常与作者联系获取最新版本"
         android:layout_below="@id/about_text1"
         android:gravity="center"
         android:layout_centerHorizontal="true"

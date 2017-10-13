@@ -53,7 +53,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.StudyRoomActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
         <activity
             android:name=".Activities.ExamActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -77,7 +79,10 @@
         <activity
             android:name=".Activities.CardRechargeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.CardQueryActivity"
+        <activity
+            android:name=".Activities.CardQueryActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activities.StudyRoomResultActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 

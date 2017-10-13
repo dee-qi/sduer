@@ -60,7 +60,9 @@ public class NewsListFrag extends Fragment {
             if(msg.what == LOAD_FAILED){
                 emptyView.setVisibility(View.VISIBLE);
                 recyclerView.setVisibility(View.GONE);
-                SmartToast.make(getContext(),"加载失败！");
+                if(getContext() != null) {
+                    SmartToast.make(getContext(), "加载失败！");
+                }
             } else if(msg.what == LOAD_SUCCEED){
                 try{
                     String resp = (String) msg.obj;

@@ -18,6 +18,7 @@ import com.example.sduhelper.Activities.SchoolBusActivity;
 import com.example.sduhelper.Activities.SchoolCardActivity;
 import com.example.sduhelper.Activities.SchoolScheduleActivity;
 import com.example.sduhelper.Activities.ScoreActivity;
+import com.example.sduhelper.Activities.StudyRoomActivity;
 import com.example.sduhelper.R;
 import com.example.sduhelper.utils.ApiUtil;
 import com.example.sduhelper.utils.Information;
@@ -101,7 +102,8 @@ public class FunctionsFragment extends Fragment implements View.OnClickListener{
                 startActivity(intent);
                 break;
             case R.id.func_studyroom:
-                SmartToast.make(v.getContext(),"功能开发中！敬请期待！");
+                intent = new Intent(v.getContext(), StudyRoomActivity.class);
+                startActivity(intent);
                 //测试图书馆的绑定功能的代码
 //                String url = ApiUtil.getApi(getContext(),"api_lib_bind");
 //                Map<String,String> map = new HashMap<>();

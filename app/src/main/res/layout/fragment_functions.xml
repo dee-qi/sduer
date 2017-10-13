@@ -24,19 +24,19 @@
                 app:cardCornerRadius="@dimen/cardview_default_radius">
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="96dp"
+                    android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/func_schoolcard"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="36dp"
-                    android:background="@color/func_background"
-                    android:text="校园卡"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:gravity="center_vertical"
-                    android:textSize="@dimen/func_text"
-                    android:textColor="@color/func_textColor"
-                    android:layout_gravity="bottom" />
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="36dp"-->
+                    <!--android:background="@color/func_background"-->
+                    <!--android:text="校园卡"-->
+                    <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:textSize="@dimen/func_text"-->
+                    <!--android:textColor="@color/func_textColor"-->
+                    <!--android:layout_gravity="bottom" />-->
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
                 android:id="@+id/func_curriculum"
@@ -51,19 +51,19 @@
                 android:clickable="true">
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="96dp"
+                    android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/func_curriculum"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="36dp"
-                    android:background="@color/func_background"
-                    android:text="我的课表"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:gravity="center_vertical"
-                    android:textSize="@dimen/func_text"
-                    android:textColor="@color/func_textColor"
-                    android:layout_gravity="bottom" />
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="36dp"-->
+                    <!--android:background="@color/func_background"-->
+                    <!--android:text="我的课表"-->
+                    <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:textSize="@dimen/func_text"-->
+                    <!--android:textColor="@color/func_textColor"-->
+                    <!--android:layout_gravity="bottom" />-->
             </android.support.v7.widget.CardView>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -82,19 +82,19 @@
                     android:clickable="true">
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="96dp"
+                        android:layout_height="match_parent"
                         android:scaleType="centerCrop"
                         android:src="@drawable/func_studyroom"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="36dp"
-                        android:background="@color/func_background"
-                        android:text="自习室查询"
-                        android:paddingLeft="@dimen/activity_horizontal_margin"
-                        android:gravity="center_vertical"
-                        android:textSize="@dimen/func_text"
-                        android:textColor="@color/func_textColor"
-                        android:layout_gravity="bottom" />
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="36dp"-->
+                        <!--android:background="@color/func_background"-->
+                        <!--android:text="自习室查询"-->
+                        <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:textSize="@dimen/func_text"-->
+                        <!--android:textColor="@color/func_textColor"-->
+                        <!--android:layout_gravity="bottom" />-->
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
                     android:id="@+id/func_schoolbus"
@@ -109,19 +109,19 @@
                     android:clickable="true">
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="96dp"
+                        android:layout_height="match_parent"
                         android:scaleType="centerCrop"
                         android:src="@drawable/func_schoolbus"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="36dp"
-                        android:background="@color/func_background"
-                        android:text="校车查询"
-                        android:paddingLeft="@dimen/activity_horizontal_margin"
-                        android:gravity="center_vertical"
-                        android:textSize="@dimen/func_text"
-                        android:textColor="@color/func_textColor"
-                        android:layout_gravity="bottom" />
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="36dp"-->
+                        <!--android:background="@color/func_background"-->
+                        <!--android:text="校车查询"-->
+                        <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:textSize="@dimen/func_text"-->
+                        <!--android:textColor="@color/func_textColor"-->
+                        <!--android:layout_gravity="bottom" />-->
                 </android.support.v7.widget.CardView>
             </LinearLayout>
             <LinearLayout
@@ -142,19 +142,19 @@
                     android:clickable="true">
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="96dp"
+                        android:layout_height="match_parent"
                         android:scaleType="centerCrop"
                         android:src="@drawable/func_exam"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="36dp"
-                        android:background="@color/func_background"
-                        android:text="考试安排"
-                        android:paddingLeft="@dimen/activity_horizontal_margin"
-                        android:gravity="center_vertical"
-                        android:textSize="@dimen/func_text"
-                        android:textColor="@color/func_textColor"
-                        android:layout_gravity="bottom" />
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="36dp"-->
+                        <!--android:background="@color/func_background"-->
+                        <!--android:text="考试安排"-->
+                        <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:textSize="@dimen/func_text"-->
+                        <!--android:textColor="@color/func_textColor"-->
+                        <!--android:layout_gravity="bottom" />-->
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
                     android:id="@+id/func_score"
@@ -169,19 +169,19 @@
                     android:clickable="true">
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="96dp"
+                        android:layout_height="match_parent"
                         android:scaleType="centerCrop"
                         android:src="@drawable/func_score"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="36dp"
-                        android:background="@color/func_background"
-                        android:text="成绩查询"
-                        android:paddingLeft="@dimen/activity_horizontal_margin"
-                        android:gravity="center_vertical"
-                        android:textSize="@dimen/func_text"
-                        android:textColor="@color/func_textColor"
-                        android:layout_gravity="bottom" />
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="36dp"-->
+                        <!--android:background="@color/func_background"-->
+                        <!--android:text="成绩查询"-->
+                        <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:textSize="@dimen/func_text"-->
+                        <!--android:textColor="@color/func_textColor"-->
+                        <!--android:layout_gravity="bottom" />-->
                 </android.support.v7.widget.CardView>
             </LinearLayout>
             <LinearLayout
@@ -202,18 +202,18 @@
                     android:clickable="true">
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="96dp"
+                        android:layout_height="match_parent"
                         android:scaleType="centerCrop"
                         android:src="@drawable/func_library"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="36dp"
-                        android:background="@color/func_background"
-                        android:text="图书馆"
-                        android:paddingLeft="@dimen/activity_horizontal_margin"
-                        android:gravity="center_vertical"
-                        android:textSize="@dimen/func_text"
-                        android:textColor="@color/func_textColor"
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="36dp"-->
+                        <!--android:background="@color/func_background"-->
+                        <!--android:text="图书馆"-->
+                        <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:textSize="@dimen/func_text"-->
+                        <!--android:textColor="@color/func_textColor"-->
                         android:layout_gravity="bottom" />
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
@@ -229,19 +229,19 @@
                     android:clickable="true">
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="96dp"
+                        android:layout_height="match_parent"
                         android:scaleType="centerCrop"
                         android:src="@drawable/func_schedule"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="36dp"
-                        android:background="@color/func_background"
-                        android:text="校历"
-                        android:paddingLeft="@dimen/activity_horizontal_margin"
-                        android:gravity="center_vertical"
-                        android:textSize="@dimen/func_text"
-                        android:textColor="@color/func_textColor"
-                        android:layout_gravity="bottom" />
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="36dp"-->
+                        <!--android:background="@color/func_background"-->
+                        <!--android:text="校历"-->
+                        <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:textSize="@dimen/func_text"-->
+                        <!--android:textColor="@color/func_textColor"-->
+                        <!--android:layout_gravity="bottom" />-->
                 </android.support.v7.widget.CardView>
             </LinearLayout>
         </LinearLayout>

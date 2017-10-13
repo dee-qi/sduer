@@ -61,6 +61,33 @@ public class Information {
         return weekday;
     }
 
+    public static String getWeekday(int year,int month,int day){
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year,month-1,day);
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        switch (dayOfWeek){
+            case 2:
+                return "周一";
+            case 3:
+                return "周二";
+            case 4:
+                return "周三";
+            case 5:
+                return "周四";
+            case 6:
+                return "周五";
+            case 7:
+                return "周六";
+            case 1:
+                return "周日";
+        }
+        return "";
+    }
+
+    public static int getYear(){Calendar calendar = Calendar.getInstance(); return calendar.get(Calendar.YEAR);}
+    public static int getMonth(){Calendar calendar = Calendar.getInstance(); return calendar.get(Calendar.MONTH)+1;}
+    public static int getDay(){Calendar calendar = Calendar.getInstance(); return calendar.get(Calendar.DAY_OF_MONTH);}
+
     public static String stamp2Date(long stamp){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String[] s = sdf.format(stamp).split("-");
