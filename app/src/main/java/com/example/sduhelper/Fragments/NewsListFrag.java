@@ -10,6 +10,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,14 +73,14 @@ public class NewsListFrag extends Fragment {
                         newsItemList.add(new NewsItem(object.getString("title"),
                                 object.getString("date"),
                                 object.getString("block"),
-                                object.getString("url")));
+                                object.getString("url"),k));
                     }
                 } catch (Exception e){
                     e.printStackTrace();
                     emptyView.setVisibility(View.VISIBLE);
                     recyclerView.setVisibility(View.GONE);
                 }
-                NewsAdapter adapter = new NewsAdapter(newsItemList);
+                NewsAdapter adapter = new NewsAdapter(newsItemList,api);
                 recyclerView.setAdapter(adapter);
             }
             if(msg.arg1 == REFRESH){
@@ -138,6 +139,7 @@ public class NewsListFrag extends Fragment {
 
             @Override
             public void onFailure(Call call, IOException e) {
+                Log.d("@hhh", "onFailure: ");
                 msg = new Message();
                 msg.what = LOAD_FAILED;
                 handler.sendMessage(msg);
@@ -145,6 +147,7 @@ public class NewsListFrag extends Fragment {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                Log.d("@hhh", "onFailure: nnn");
                 msg = new Message();
                 msg.what = LOAD_SUCCEED;
                 msg.arg1 = loadType;

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sduhelper.Activities.NewsDetailActivity;
 import com.example.sduhelper.Activities.WebViewBrowserActivity;
 import com.example.sduhelper.Items.NewsItem;
 import com.example.sduhelper.R;
@@ -24,6 +25,7 @@ import java.util.List;
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     private  List<NewsItem> mList;
+    private String api;
 
     static class ViewHolder extends  RecyclerView.ViewHolder{
         TextView newsTitle;
@@ -39,7 +41,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         }
     }
 
-    public NewsAdapter(List<NewsItem> newsItemList){mList = newsItemList;}
+    public NewsAdapter(List<NewsItem> newsItemList,String api){mList = newsItemList;this.api = api;}
 
     @Override
     public ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
@@ -50,10 +52,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
                 NewsItem newsItem = mList.get(position);
-                Intent intent = new Intent(parent.getContext(), WebViewBrowserActivity.class);
+                Intent intent = new Intent(parent.getContext(), NewsDetailActivity.class);
                 intent.putExtra("url", newsItem.getUrl());
+                intent.putExtra("id",newsItem.getId());
+                intent.putExtra("api",api);
                 parent.getContext().startActivity(intent);
-                Toast.makeText(parent.getContext(), "手势可缩放页面", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(parent.getContext(), "手势可缩放页面", Toast.LENGTH_SHORT).show();
             }
         });
         return holder;

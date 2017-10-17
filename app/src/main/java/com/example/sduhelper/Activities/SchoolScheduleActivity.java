@@ -27,7 +27,7 @@ public class SchoolScheduleActivity extends BaseActivity {
     private String[] name = new String[]{"教工上班","老腊肉注册","小鲜肉报到","新生军训","老肉上课","小鲜肉上课",
             "校庆日","考试周","寒假"};
     private String[] time = new String[]{"2017/09/07","2017/09/08","2017/09/09","从2017/09/10到2017/09/30",
-            "2017/09/11","2017/10/09","2017/10/15","从2017/01/15到2017/01/28","从2018/01/29到2018/03/04"};
+            "2017/09/11","2017/10/09","2017/10/15","从2018/01/15到2018/01/28","从2018/01/29到2018/03/04"};
 
     private ListView listView;
     private CalendarView calendarView;

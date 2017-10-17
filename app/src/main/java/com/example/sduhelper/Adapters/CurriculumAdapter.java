@@ -79,7 +79,9 @@ public class CurriculumAdapter extends BaseAdapter {
                 //不在当前周的课程为灰色，其余为5种颜色随机
                 Log.d(TAG, "item "+getItem(position).getName()+" is "+getItem(position).getWeekSequence());
                 if (getItem(position).getWeekSequence().charAt(weekOfTerm - 1) == '0') {
-                    textView.setBackground(context.getResources().getDrawable(R.drawable.curriculum_bg_0));
+                    textView.setText("");
+//                    textView.setBackground(context.getResources().getDrawable(R.drawable.curriculum_bg_0));
+                    //do nothing
                 } else {
                     switch ((int) (Math.random() * 5)) {
                         case 0:

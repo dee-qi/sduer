@@ -12,16 +12,19 @@ public class NewsItem {
     private String time;//时间
     private String block;//栏目
     private String url;
+    private int id;
 
 
 
-    public NewsItem(String t, String time, String block, String url){
+    public NewsItem(String t, String time, String block, String url, int id){
         this.title = t;
         this.time = time;
         this.block = block;
         this.url = url;
+        this.id = id;
     }
-
+    public int getId(){return id;}
+    public void setId(int id){this.id = id;}
     public String getTitle() {
         return title;
     }

@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -25,6 +26,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -45,8 +50,9 @@ public class SchoolBusActivity extends BaseActivity implements View.OnClickListe
     private ImageView exchange;
     private RadioButton weekday;
     private RadioButton weekend;
-    String[] queryResults;
-    ArrayAdapter resultAdapter;
+
+    SimpleAdapter resultAdapter;
+    List<Map<String,String>> dataList;
     ListView resultList;
 
     @Override
@@ -124,6 +130,7 @@ public class SchoolBusActivity extends BaseActivity implements View.OnClickListe
 
 
     private void  requestBusResult() {
+        dataList = new LinkedList<>();
         resultList.setAdapter(null);//清空ListView数据
 
         OkHttpClient client = new OkHttpClient();
@@ -152,27 +159,26 @@ public class SchoolBusActivity extends BaseActivity implements View.OnClickListe
                 queryDialog.dismiss();
                 try {
                     String responseData = response.body().string();
-                    Log.d(TAG, "onResponse: " + responseData);
                     JSONArray jsonArray = new JSONArray(responseData);
-                    Log.d(TAG, "onResponse: array length:" + jsonArray.length());
-                    queryResults = new String[jsonArray.length()];
-                    if (queryResults.length == 0) {
+
+                    if (jsonArray.length() == 0) {
                         isBusDataAvailable = false;
                     }
                     for (int i = 0; i < jsonArray.length(); i++) {
+                        Map<String,String> map = new HashMap<String, String>();
                         JSONObject object = jsonArray.getJSONObject(i);
-                        String s = object.getString("s");
-                        String e = object.getString("e");
-                        String t = object.getString("t");
-                        String item = t + "\n" + "从" + s + " 到 " + e;
-                        queryResults[i] = item;
-                        Log.d(TAG, "onResponse: item" + i + ": " + item);
+                        map.put("s","始 "+object.getString("s"));
+                        map.put("e","终 "+object.getString("e"));
+                        map.put("t",object.getString("t"));
+                        map.put("p","经 "+object.getString("p"));
+                        dataList.add(map);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Log.d(TAG, "onResponse: error");
                 }
-                resultAdapter = new ArrayAdapter(getApplicationContext(), R.layout.item_bus_result, queryResults);
+                resultAdapter = new SimpleAdapter(SchoolBusActivity.this,dataList,R.layout.item_bus_result,
+                        new String[]{"s","e","t","p"},new int[]{R.id.item_bus_result_start,R.id.item_bus_result_end,
+                R.id.item_bus_result_time,R.id.item_bus_result_pass});
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

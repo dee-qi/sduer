@@ -1,6 +1,7 @@
 package com.example.sduhelper.Fragments;
 
 import android.content.Intent;
+import android.icu.text.IDNA;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
@@ -140,9 +141,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         schoolCardShowAll.setOnClickListener(this);
         schoolcardRefresh.setOnClickListener(this);
 
-        loadCurriculumToday();
-        loadSchoolCard();
-        loadLib();
+        if(Information.isOnTrial == false) {
+            loadCurriculumToday();
+            loadSchoolCard();
+            loadLib();
+        }
 
         return v;
     }
@@ -150,9 +153,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onResume() {
         super.onResume();
-        loadCurriculumToday();
-        loadSchoolCard();
-        loadLib();
+        if(Information.isOnTrial == false) {
+            loadCurriculumToday();
+            loadSchoolCard();
+            loadLib();
+        }
     }
 
     private void loadCurriculumToday(){
@@ -162,7 +167,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             curriculumNone.setVisibility(View.VISIBLE);
             curriculumNone.setText("当前是假期~课表君也要放假啦");
         } else {
-            Log.d(TAG, "loadCurriculumToday: 非-1");
             curriculumDate.setText(Information.getCurrentDate() + "    " + "第" + Information.getCurrentWeekCount() + "周");
             if (Information.isOnTrial) {
                 return;

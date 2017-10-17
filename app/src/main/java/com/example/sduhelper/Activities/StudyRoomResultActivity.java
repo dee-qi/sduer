@@ -39,7 +39,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class StudyRoomResultActivity extends AppCompatActivity {
-    private static final String TAG = "@room";
+    private static final String TAG = "@aaaroom";
     String campus,building;
     Toolbar toolbar;
     RecyclerView resultList;
@@ -150,6 +150,7 @@ public class StudyRoomResultActivity extends AppCompatActivity {
                             } else builder.append("2");
                         }
                         builder.append(o.getString("classroom"));
+                        Log.d(TAG, "onResponse: "+builder.toString());
                         dataList.add(builder.toString());
                     }
                     msg.what = LOAD_SUCCEED;

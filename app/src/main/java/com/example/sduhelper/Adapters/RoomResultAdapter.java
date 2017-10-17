@@ -72,6 +72,7 @@ public class RoomResultAdapter extends RecyclerView.Adapter<RoomResultAdapter.Vi
         for(int i=0; i<statusInfo.length(); i++){
             if(statusInfo.charAt(i) == '0'){
                 holder.statusList.get(i).setText("闲");
+                holder.statusList.get(i).setTextColor(holder.roomName.getResources().getColor(R.color.text_default));
             } else if(statusInfo.charAt(i) == '1'){
                 holder.statusList.get(i).setText("课");
                 holder.statusList.get(i).setTextColor(holder.roomName.getResources().getColor(R.color.themeColor));

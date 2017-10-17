@@ -53,9 +53,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.StudyRoomActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".Activities.ExamActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -82,8 +80,13 @@
         <activity
             android:name=".Activities.CardQueryActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.StudyRoomResultActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Activities.StudyRoomResultActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activities.NewsDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

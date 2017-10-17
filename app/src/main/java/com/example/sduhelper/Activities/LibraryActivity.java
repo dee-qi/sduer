@@ -115,9 +115,7 @@ public class LibraryActivity extends BaseActivity {
         gone = (TextView)findViewById(R.id.library_borrowed_gone);
 
         if(SharedPreferenceUtil.get(LibraryActivity.this,"userInfo","isLibraryBound")
-                .equals("false")||
-                SharedPreferenceUtil.get(LibraryActivity.this,"userInfo","cardNum")
-                        .equals("")){
+                .equals("false")){
             final EditText cardId = new EditText(this);
             cardId.setHint("校园卡账号（不是学号）");
             cardId.setInputType(EditorInfo.TYPE_CLASS_NUMBER);
