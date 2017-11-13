@@ -26,9 +26,9 @@
 
 ##产品截图
 
-![image](imageInGitHub\home.jpg)
-![image](imageInGitHub\home_drawer.jpg)
-![image](imageInGitHub\functions.jpg)
+![image](http://github.com/sevenddddddd/sduer/raw/master/imageInGithub/home.jpg)
+![image](http://github.com/sevenddddddd/sduer/raw/master/imageInGithub/functions.jpg)
+![image](http://github.com/sevenddddddd/sduer/raw/master/imageInGithub/news.jpg)
 
 ## 开发者
 
