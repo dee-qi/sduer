@@ -25,7 +25,7 @@
 > * 无
 
 
-## 产品截图
+## 产品截图(see more in folder "screenshots")
 
 | Home    | Functions    | News |
 | :-------------: | :-------------: |:-------------: |
