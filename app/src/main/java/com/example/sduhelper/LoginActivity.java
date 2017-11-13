@@ -296,10 +296,12 @@ public class LoginActivity extends BaseActivity {
                     Information.api_token = obj.getString("token");
                     boolean lib = obj.getJSONObject("user").getBoolean("library");
                     boolean aca = obj.getJSONObject("user").getBoolean("academic");
+                    boolean card = obj.getJSONObject("user").getBoolean("card");
                     int id = obj.getJSONObject("user").getInt("id");
                     SharedPreferenceUtil.save(LoginActivity.this,"userInfo","token",Information.api_token);
                     SharedPreferenceUtil.save(LoginActivity.this,"userInfo","isLibraryBound",""+lib);
                     SharedPreferenceUtil.save(LoginActivity.this,"userInfo","isAcademicBound",""+aca);
+                    SharedPreferenceUtil.save(LoginActivity.this,"userInfo","isCardBound",""+card);
                     SharedPreferenceUtil.save(LoginActivity.this,"userInfo","id",""+id);
                 } catch (JSONException e){
                     e.printStackTrace();

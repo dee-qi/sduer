@@ -221,17 +221,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         schoolcardBalanceGroup.setVisibility(View.GONE);
         schoolcardTips.setVisibility(View.VISIBLE);
         schoolcardTips.setText("加载中");
-        if(SharedPreferenceUtil.get(getContext(),"userInfo","cardNum")
-                        .equals("")){
+        if(SharedPreferenceUtil.get(getContext(),"userInfo","isCardBound")
+                        .equals("false")){
             schoolcardTips.setText("请先进入校园卡功能绑定卡号");
         } else if(balance.equals("")){
 //            SmartToast.make(getContext(),"请求校园卡数据");
-            String url = String.format(ApiUtil.getApi(getContext(), "api_school_card_getInfo"),
-                    SharedPreferenceUtil.get(getContext(),"userInfo","cardNum"),
-                    SharedPreferenceUtil.get(getContext(),"userInfo","pwd"));
+            String url = ApiUtil.getApi(getContext(),"api_school_card_getInfo");
+            String token = SharedPreferenceUtil.get(getContext(),"userInfo","token");
 //            String url = String.format(ApiUtil.getApi(getContext(),"api_school_card_getInfo"),
 //                    "268210","@@@@@@");
-            NetWorkUtil.get(url, new Callback() {
+            NetWorkUtil.get(url, token, new Callback() {
                 Message msg = new Message();
                 @Override
                 public void onFailure(Call call, IOException e) {
@@ -249,7 +248,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                     }
                     try{
                         Log.d("@schoolcard@", "onResponse: schoolcard "+s);
-                        JSONArray array = new JSONArray(s);
+                        JSONArray array = new JSONObject(s).getJSONArray("obj");
                         JSONObject obj = array.getJSONObject(2);
                         msg.obj = obj.get("value");
                         msg.what = SCH_SUCCEED;

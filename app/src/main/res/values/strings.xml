@@ -1,7 +1,7 @@
 <resources>
     <!--应用信息-->
     <string name="app_name">SDUHelper</string>
-    <string name="version_code">测试版 v0.66</string>
+    <string name="version_code">测试版 v0.7</string>
     <!--底部的tab名称-->
     <string name="title_home">首页</string>
     <string name="title_functions">功能</string>

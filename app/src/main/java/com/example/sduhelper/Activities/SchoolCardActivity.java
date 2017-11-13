@@ -1,5 +1,6 @@
 package com.example.sduhelper.Activities;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -46,10 +47,14 @@ public class SchoolCardActivity extends BaseActivity {
     private TextView status;
     private SwipeRefreshLayout refreshLayout;
     private Map<String,String> mMap;
+    private ProgressDialog pd;
 
     private TextView recharge;
     private TextView history;
 
+    private final int BIND_SUCCEED = 0x100;
+    private final int BIND_FAILED = 0x155;
+    private final int BIND_INCORRECT = 0x222;
     private final int LOAD_SUCCEED = 0x111;
     private final int LOAD_FAILED = 0x112;
     Handler handler = new Handler(){
@@ -57,23 +62,53 @@ public class SchoolCardActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             refreshLayout.setRefreshing(false);
             switch (msg.what){
+                case BIND_SUCCEED:
+                    pd.dismiss();
+                    SmartToast.make(SchoolCardActivity.this, "绑定成功");
+                    SharedPreferenceUtil.save(SchoolCardActivity.this, "userInfo", "isCardBound", "true");
+                    loadData();
+                    break;
+                case BIND_INCORRECT:
+                    pd.dismiss();
+                    new AlertDialog.Builder(SchoolCardActivity.this)
+                            .setTitle("绑定失败")
+                            .setMessage("请输入正确的校园卡号和密码。")
+                            .setNegativeButton("我知道了",null)
+                            .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                @Override
+                                public void onDismiss(DialogInterface dialog) {
+                                    SchoolCardActivity.this.finish();
+                                }
+                            })
+                            .show();
+                    break;
+                case BIND_FAILED:
+                    pd.dismiss();
+                    new AlertDialog.Builder(SchoolCardActivity.this)
+                            .setTitle("绑定失败")
+                            .setMessage("请检查网络连接或者在意见反馈中联系我们。")
+                            .setNegativeButton("我知道了",null)
+                            .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                @Override
+                                public void onDismiss(DialogInterface dialog) {
+                                    SchoolCardActivity.this.finish();
+                                }
+                            })
+                            .show();
+                    break;
                 case LOAD_SUCCEED :
-                    balance.setText(mMap.get("校园卡余额 "));
-                    transition.setText("过渡余额："+mMap.get("当前过渡余额 ")+"元");
+                    balance.setText(mMap.get("校园卡余额"));
+                    transition.setText("过渡余额："+mMap.get("当前过渡余额")+"元");
                     name.setText(mMap.get("姓名"));
-                    bank.setText(mMap.get("银行卡号 "));
-                    lost.setText(mMap.get("挂失状态 "));
-                    freeze.setText(mMap.get("冻结状态 "));
-                    status.setText(mMap.get("身份类型 "));
-                    Log.d(TAG, "handleMessage: mMap is empty?"+mMap.isEmpty());
+                    bank.setText(mMap.get("银行卡号"));
+                    lost.setText(mMap.get("挂失状态"));
+                    freeze.setText(mMap.get("冻结状态"));
+                    status.setText(mMap.get("身份类型"));
                     break;
                 case LOAD_FAILED :
                     new AlertDialog.Builder(SchoolCardActivity.this)
                             .setTitle("获取信息失败")
-                            .setMessage("可能是以下原因：\n" +
-                                    "1.操作过于频繁（学校要求两小时操作不得超过5次），请两小时后再试\n" +
-                                    "2.网络故障，请检查网络连接\n" +
-                                    "3.服务器故障，请在问题反馈中联系我们")
+                            .setMessage("请检查网络设置或者在问题反馈中联系我们。")
                             .setNegativeButton("我知道了",null)
                             .setOnDismissListener(new DialogInterface.OnDismissListener() {
                                 @Override
@@ -107,8 +142,7 @@ public class SchoolCardActivity extends BaseActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                loadData(SharedPreferenceUtil.get(SchoolCardActivity.this,"userInfo","cardNum"),
-                        SharedPreferenceUtil.get(SchoolCardActivity.this,"userInfo","pwd"));
+                loadData();
             }
         });
 
@@ -127,16 +161,17 @@ public class SchoolCardActivity extends BaseActivity {
         history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(refreshLayout.isRefreshing()){
-                    SmartToast.make(SchoolCardActivity.this,"请等待信息获取完毕再进行操作！");
-                } else {
-                    Intent intent = new Intent(SchoolCardActivity.this, CardQueryActivity.class);
-                    startActivity(intent);
-                }
+                SmartToast.make(SchoolCardActivity.this, "功能维护中");
+//                if(refreshLayout.isRefreshing()){
+//                    SmartToast.make(SchoolCardActivity.this,"请等待信息获取完毕再进行操作！");
+//                } else {
+//                    Intent intent = new Intent(SchoolCardActivity.this, CardQueryActivity.class);
+//                    startActivity(intent);
+//                }
             }
         });
 
-        if(SharedPreferenceUtil.get(SchoolCardActivity.this,"userInfo","cardNum").equals("")){
+        if(SharedPreferenceUtil.get(SchoolCardActivity.this,"userInfo","isCardBound").equals("false")){
             final EditText cardId = new EditText(this);
             cardId.setHint("校园卡账号（不是学号）");
             cardId.setInputType(EditorInfo.TYPE_CLASS_NUMBER);
@@ -155,7 +190,7 @@ public class SchoolCardActivity extends BaseActivity {
                     .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            loadData(cardId.getText().toString(),pwd.getText().toString());
+                            bindCard(cardId.getText().toString(), pwd.getText().toString());
                         }
                     })
                     .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -166,41 +201,64 @@ public class SchoolCardActivity extends BaseActivity {
                     })
                     .show();
         } else {
-            loadData(SharedPreferenceUtil.get(SchoolCardActivity.this,"userInfo","cardNum"),
-                    SharedPreferenceUtil.get(SchoolCardActivity.this,"userInfo","pwd"));
+            loadData();
         }
     }
 
-    private void loadData(final String cardId, final String pwd){
+    private void bindCard(String cardNo, String pwd){
+        pd = new ProgressDialog(SchoolCardActivity.this);
+        pd.setMessage("绑定中");
+        pd.show();
+        String url = ApiUtil.getApi(SchoolCardActivity.this, "api_school_card_bind");
+        String token = SharedPreferenceUtil.get(SchoolCardActivity.this, "userInfo", "token");
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("cardNo",cardNo);
+        map.put("password", pwd);
+        NetWorkUtil.post(url, map, token, new Callback() {
+            Message msg;
+            @Override
+            public void onFailure(Call call, IOException e) {
+                msg = new Message();
+                msg.what = BIND_FAILED;
+                handler.sendMessage(msg);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                msg = new Message();
+                String s = response.body().string();
+                if(s.contains("成功")) msg.what = BIND_SUCCEED;
+                else if(s.contains("失败")) msg.what = BIND_INCORRECT;
+                else msg.what = BIND_FAILED;
+
+                handler.sendMessage(msg);
+            }
+        });
+    }
+    private void loadData(){
         refreshLayout.setRefreshing(true);
-        String url = String.format(ApiUtil.getApi(SchoolCardActivity.this, "api_school_card_getInfo"),
-                cardId,pwd);
-//            String url = String.format(ApiUtil.getApi(SchoolCardActivity.this,"api_school_card_getInfo"),
-//                    "268210","@@@@");
-        NetWorkUtil.get(url, new Callback() {
+        String url = ApiUtil.getApi(SchoolCardActivity.this, "api_school_card_getInfo");
+        String token = SharedPreferenceUtil.get(SchoolCardActivity.this, "userInfo", "token");
+        NetWorkUtil.get(url, token, new Callback() {
             Message msg = new Message();
             @Override
             public void onFailure(Call call, IOException e) {
                 msg.what = LOAD_FAILED;
                 handler.sendMessage(msg);
-                Log.d(TAG, "onFailure: IN schoolCard :"+e.getMessage());
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String s = response.body().string();
+                Log.d(TAG, "onResponse: "+s);
                 try{
-                    Log.d(TAG, "onResponse: schoolcard "+s);
-                    JSONArray array = new JSONArray(s);
+                    JSONArray array = new JSONObject(s).getJSONArray("obj");
                     mMap = new HashMap<String, String>();
                     for(int i=0; i<array.length(); i++){
                         JSONObject obj = array.getJSONObject(i);
-                        mMap.put(obj.getString("name"),obj.getString("value"));
-                        Log.d(TAG, "put in map :"+obj.getString("name"));
+                        mMap.put(obj.getString("key"),obj.getString("value"));
                     }
                     msg.what = LOAD_SUCCEED;
-                    SharedPreferenceUtil.save(SchoolCardActivity.this,"userInfo","cardNum",cardId);
-                    SharedPreferenceUtil.save(SchoolCardActivity.this,"userInfo","pwd",pwd);
                 } catch (JSONException e){
                     msg.what = LOAD_FAILED;
                     Log.d(TAG, "onResponse: "+e.getMessage());

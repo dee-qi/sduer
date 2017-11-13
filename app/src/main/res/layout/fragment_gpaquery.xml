@@ -18,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="80sp"
+        android:textColor="@color/themeColor"
         android:gravity="center_horizontal"
         android:text="加载中"/>
     <TextView

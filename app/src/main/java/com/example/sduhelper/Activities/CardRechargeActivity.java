@@ -91,7 +91,6 @@ public class CardRechargeActivity extends AppCompatActivity implements View.OnCl
                     default:
                         rechargeNum = "";
                 }
-//                SmartToast.make(CardRechargeActivity.this, rechargeNum);
                 recharge(rechargeNum);
             }
 
@@ -134,6 +133,8 @@ public class CardRechargeActivity extends AppCompatActivity implements View.OnCl
     private ProgressDialog dia;
     private final int RECHARGE_FAILED = 0x889;
     private final int RECHARGE_SUCCEED = 0x888;
+    private final int RECHARGE_AMOUNT_ERR = 0x123;
+    private final int RECHARGE_BALANCE_ERR = 0x124;
     Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -143,11 +144,19 @@ public class CardRechargeActivity extends AppCompatActivity implements View.OnCl
             } else if(msg.what == RECHARGE_FAILED){
                 new AlertDialog.Builder(CardRechargeActivity.this)
                         .setTitle("充值失败")
-                        .setMessage("可能是以下原因：\n" +
-                                "1.操作过于频繁（学校要求两小时操作不得超过5次），请两小时后再试\n" +
-                                "2.不在允许交易的时间段内。请在白天尝试\n" +
-                                "3.网络故障，请检查网络连接\n" +
-                                "4.服务器故障，请在问题反馈中联系我们")
+                        .setMessage("请检查网络或者在问题反馈中联系我们。")
+                        .setNegativeButton("我知道了",null)
+                        .show();
+            } else if(msg.what == RECHARGE_BALANCE_ERR){
+                new AlertDialog.Builder(CardRechargeActivity.this)
+                        .setTitle("余额不足")
+                        .setMessage("请确保与校园卡绑定的银行卡内有足够余额。")
+                        .setNegativeButton("我知道了",null)
+                        .show();
+            } else if(msg.what == RECHARGE_AMOUNT_ERR){
+                new AlertDialog.Builder(CardRechargeActivity.this)
+                        .setTitle("金额错误")
+                        .setMessage("充值金额必须大于0且不大于300。")
                         .setNegativeButton("我知道了",null)
                         .show();
             }
@@ -160,27 +169,41 @@ public class CardRechargeActivity extends AppCompatActivity implements View.OnCl
         dia.setIndeterminate(true);
         dia.setCancelable(false);
         dia.show();
-        String url = String.format(ApiUtil.getApi(CardRechargeActivity.this,"api_school_card_transfer"),
-                SharedPreferenceUtil.get(this,"userInfo","cardNum"),
-                SharedPreferenceUtil.get(this,"userInfo","pwd"),
-                number);
-        NetWorkUtil.get(url, new Callback() {
-            Message msg = new Message();
+        String url = ApiUtil.getApi(CardRechargeActivity.this, "api_school_card_transfer");
+        String token = SharedPreferenceUtil.get(CardRechargeActivity.this, "userInfo", "token");
+        Map<String, String> map = new HashMap<>();
+        map.put("amount", number);
+        NetWorkUtil.post(url, map, token, new Callback() {
+            Message msg;
             @Override
             public void onFailure(Call call, IOException e) {
+                msg = new Message();
                 msg.what = RECHARGE_FAILED;
                 handler.sendMessage(msg);
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                msg = new Message();
                 String s = response.body().string();
-                if(s.contains("false")){
+                Log.d("@transfer", "onResponse: "+s);
+
+                try{
+                    JSONObject obj = new JSONObject(s);
+                    String str = obj.getString("msg");
+                    if(str.contains("成功")){
+                        msg.what = RECHARGE_SUCCEED;
+                    } else if(str.contains("限制")){
+                        msg.what = RECHARGE_AMOUNT_ERR;
+                    } else if(str.contains("余额")){
+                        msg.what = RECHARGE_BALANCE_ERR;
+                    } else msg.what = RECHARGE_FAILED;
+                } catch (JSONException e){
+                    Log.d("@tra", "onResponse: "+e.getMessage());
                     msg.what = RECHARGE_FAILED;
-                } else {
-                    msg.what = RECHARGE_SUCCEED;
+                } finally {
+                    handler.sendMessage(msg);
                 }
-                handler.sendMessage(msg);
             }
         });
     }
