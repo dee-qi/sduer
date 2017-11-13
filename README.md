@@ -24,9 +24,12 @@
 > > 未完成
 > * 无
 
+
 ##产品截图
 
-<img src="/imageInGitHub/home.png" width="200px" />
+| Home    | Functions    | News |
+| :-------------: | :-------------: |:-------------: |
+| ![home](./screenshots/home.jpg) | ![functions](./screenshots/functions.jpg) | ![Info](./screenshots/news.jpg) | 
 
 ## 开发者
 
